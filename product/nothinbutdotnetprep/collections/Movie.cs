@@ -1,4 +1,5 @@
 using System;
+using nothinbutdotnetprep.infrastructure;
 
 namespace nothinbutdotnetprep.collections
 {
@@ -19,7 +20,7 @@ namespace nothinbutdotnetprep.collections
         {
             if (other == null) return false;
 
-            return ReferenceEquals(this,other) || is_equal_to_non_null_instance_of(other);
+            return ReferenceEquals(this, other) || is_equal_to_non_null_instance_of(other);
         }
 
         bool is_equal_to_non_null_instance_of(Movie other)
@@ -30,6 +31,17 @@ namespace nothinbutdotnetprep.collections
         public override int GetHashCode()
         {
             return this.title.GetHashCode();
+        }
+
+        public static Criteria<Movie> is_in_genre(Genre genre)
+        {
+            return is_published_by(ProductionStudio.Pixar).or(
+                is_published_by(ProductionStudio.Disney));
+        }
+
+        public static Criteria<Movie> is_published_by(ProductionStudio studio)
+        {
+            return new IsPublishedBy(studio);
         }
     }
 }
