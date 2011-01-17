@@ -1,3 +1,4 @@
+//This is the start of our first exercise
 using System;
 using System.Collections.Generic;
 using System.Linq;
