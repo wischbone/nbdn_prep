@@ -32,13 +32,7 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_movies_published_by_pixar()
         {
-            IList<Movie> ret = new List<Movie>();
-            foreach (var m in movies)
-            {
-                if (m.production_studio == ProductionStudio.Pixar)
-                    ret.Add(m);
-            }
-            return ret;
+            return GetFilteredList(ProductionStudio.Pixar);
         }
 
         public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
@@ -145,5 +139,25 @@ namespace nothinbutdotnetprep.collections
             ((List<Movie>) movies).Sort(comp);
             return movies;
         }
+
+        private IEnumerable<Movie> GetFilteredList(ProductionStudio studio)
+        {
+            IList<ProductionStudio> studios = new List<ProductionStudio>();
+            studios.Add(studio);
+            return GetFilteredList(studios);
+        }
+
+        private IEnumerable<Movie> GetFilteredList(IList<ProductionStudio> studios)
+        {
+
+            IList<Movie> ret = new List<Movie>();
+            foreach (var m in movies)
+            {
+                if (studios.Contains(m.production_studio))
+                    ret.Add(m);
+            }
+            return ret;
+        }
+
     }
 }
