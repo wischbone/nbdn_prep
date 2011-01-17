@@ -55,11 +55,11 @@
     <Compile Include="infrastructure\Criteria.cs" />
     <Compile Include="infrastructure\CriteriaExtensions.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
+    <Compile Include="infrastructure\filtering\FuncExtensions.cs" />
+    <Compile Include="infrastructure\filtering\Where.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="infrastructure\filtering\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
