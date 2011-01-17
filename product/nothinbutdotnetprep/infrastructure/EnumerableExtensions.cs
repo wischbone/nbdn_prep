@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.infrastructure
@@ -11,15 +12,9 @@ namespace nothinbutdotnetprep.infrastructure
 
         public static IEnumerable<T> all_items_matching<T>(this IEnumerable<T> items, Criteria<T> criteria)
         {
-            return items.all_items_matching(criteria.matches);
+            foreach (var item in items)
+               if (criteria.matches(item)) yield return item;
         }
 
-        static IEnumerable<T> all_items_matching<T>(this IEnumerable<T> items, Condition<T> condition)
-        {
-            foreach (var item in items)
-            {
-                if (condition(item)) yield return item;
-            }
-        }
     }
 }

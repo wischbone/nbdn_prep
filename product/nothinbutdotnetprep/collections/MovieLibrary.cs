@@ -35,7 +35,7 @@ namespace nothinbutdotnetprep.collections
             return all_movies_matching(x => x.production_studio == ProductionStudio.Pixar);
         }
 
-        IEnumerable<Movie> all_movies_matching(Condition<Movie> condition)
+        IEnumerable<Movie> all_movies_matching(Predicate<Movie> condition)
         {
             foreach (var movie in movies)
             {

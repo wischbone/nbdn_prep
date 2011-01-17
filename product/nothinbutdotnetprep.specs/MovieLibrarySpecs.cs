@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Machine.Specifications;
 using Machine.Specifications.DevelopWithPassion.Extensions;
 using Machine.Specifications.DevelopWithPassion.Rhino;
@@ -200,6 +201,7 @@ namespace nothinbutdotnetprep.specs
              * movies using different criteria. Feel free to change/remove explicit methods if you find a way to encompass searching
              * without the need for using explicit methods. For this exercise, no linq queries are allowed!!.*/
 
+
             It should_be_able_to_find_all_movies_published_by_pixar = () =>
             {
                 var criteria = Where<Movie>.has_a(x => x.production_studio)
@@ -223,14 +225,22 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_find_all_movies_not_published_by_pixar = () =>
             {
-                var results = sut.all_movies_not_published_by_pixar();
+                var criteria = Where<Movie>.has_a(x => x.production_studio)
+                                           .not_equal_to(ProductionStudio.Pixar);
+
+                var results = sut.all_movies().all_items_matching(criteria);
+
 
                 results.ShouldNotContain(cars, a_bugs_life);
             };
 
             It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
             {
-                var results = sut.all_movies_published_after(2004);
+                var criteria = Where<Movie>.has_a(x => x.date_published.Year)
+                                           .greater_than(2004);
+
+                var results = sut.all_movies().all_items_matching(criteria);
+
 
                 results.ShouldContainOnly(the_ring, shrek, theres_something_about_mary);
             };

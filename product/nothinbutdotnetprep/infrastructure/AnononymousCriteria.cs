@@ -1,10 +1,12 @@
+using System;
+
 namespace nothinbutdotnetprep.infrastructure
 {
     public class AnononymousCriteria<T> : Criteria<T>
     {
-        Condition<T> condition;
+        Predicate<T> condition;
 
-        public AnononymousCriteria(Condition<T> condition)
+        public AnononymousCriteria(Predicate<T> condition)
         {
             this.condition = condition;
         }
