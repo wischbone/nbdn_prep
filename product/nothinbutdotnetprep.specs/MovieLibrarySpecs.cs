@@ -1,4 +1,5 @@
 //This is the start of our first exercise
+//This is Lamars comment
 using System;
 using System.Collections.Generic;
 using System.Linq;
