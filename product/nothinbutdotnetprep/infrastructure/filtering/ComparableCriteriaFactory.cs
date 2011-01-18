@@ -30,13 +30,18 @@ namespace nothinbutdotnetprep.infrastructure.filtering
 
         public Criteria<ItemToFilter> greater_than(PropertyType value)
         {
-            return new AnononymousCriteria<ItemToFilter>(x => accessor(x).CompareTo(value) > 0);
+            return CreateCriteria(x => accessor(x).CompareTo(value) > 0);
         }
 
         public Criteria<ItemToFilter> between(PropertyType start, PropertyType end)
         {
-            return new AnononymousCriteria<ItemToFilter>(x => accessor(x).CompareTo(start) >= 0 &&
+            return CreateCriteria(x => accessor(x).CompareTo(start) >= 0 &&
                 accessor(x).CompareTo(end) <= 0);
+        }
+
+        public Criteria<ItemToFilter> CreateCriteria(Predicate<ItemToFilter> expression)
+        {
+            return original_factory.CreateCriteria(expression);
         }
     }
 }
