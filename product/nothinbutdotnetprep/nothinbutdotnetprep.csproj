@@ -42,8 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="collections\Genre.cs" />
-    <Compile Include="collections\IsInGenre.cs" />
-    <Compile Include="collections\IsPublishedBy.cs" />
     <Compile Include="collections\Movie.cs" />
     <Compile Include="collections\MovieCriteria.cs" />
     <Compile Include="collections\MovieLibrary.cs" />
@@ -53,21 +51,22 @@
     <Compile Include="infrastructure\Criteria.cs" />
     <Compile Include="infrastructure\CriteriaExtensions.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
-    <Compile Include="infrastructure\filtering\ComparableCriteriaFactory.cs" />
+    <Compile Include="infrastructure\FallsInRange.cs" />
+    <Compile Include="infrastructure\filtering\CriteriaEntryPoint.cs" />
+    <Compile Include="infrastructure\filtering\DefaultCriteriaEntryPoint.cs" />
     <Compile Include="infrastructure\filtering\CriteriaFactory.cs" />
-    <Compile Include="infrastructure\filtering\DefaultCriteriaFactory.cs" />
     <Compile Include="infrastructure\filtering\FuncExtensions.cs" />
+    <Compile Include="infrastructure\filtering\NegatingCriteriaEntryPoint.cs" />
     <Compile Include="infrastructure\filtering\NotCriteriaFactory.cs" />
     <Compile Include="infrastructure\filtering\PropertyAccessor.cs" />
     <Compile Include="infrastructure\filtering\Where.cs" />
-    <Compile Include="infrastructure\IsBetween.cs" />
-    <Compile Include="infrastructure\IsEqualTo.cs" />
     <Compile Include="infrastructure\IsEqualToAny.cs" />
-    <Compile Include="infrastructure\IsGreaterThan.cs" />
     <Compile Include="infrastructure\NotCriteria.cs" />
-    <Compile Include="infrastructure\NotEqualToAny.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />
     <Compile Include="infrastructure\PropertyCriteria.cs" />
+    <Compile Include="infrastructure\ranges\ExclusiveRangeWithNoUpperBound.cs" />
+    <Compile Include="infrastructure\ranges\InclusiveRange.cs" />
+    <Compile Include="infrastructure\ranges\Range.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

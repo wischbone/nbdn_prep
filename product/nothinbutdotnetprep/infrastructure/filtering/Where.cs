@@ -1,19 +1,11 @@
-﻿using System;
-
-namespace nothinbutdotnetprep.infrastructure.filtering
+﻿namespace nothinbutdotnetprep.infrastructure.filtering
 {
     public class Where<ItemToFilter>
     {
-        public static ComparableCriteriaFactory<ItemToFilter, PropertyType> has_an<PropertyType>(
-            PropertyAccessor<ItemToFilter, PropertyType> accessor) where PropertyType : IComparable<PropertyType>
-        {
-            return new ComparableCriteriaFactory<ItemToFilter, PropertyType>(has_a(accessor));
-        }
-
-        public static DefaultCriteriaFactory<ItemToFilter, PropertyType> has_a<PropertyType>(
+        public static DefaultCriteriaEntryPoint<ItemToFilter, PropertyType> has_a<PropertyType>(
             PropertyAccessor<ItemToFilter, PropertyType> accessor)
         {
-            return new DefaultCriteriaFactory<ItemToFilter, PropertyType>(accessor);
+            return new DefaultCriteriaEntryPoint<ItemToFilter, PropertyType>(accessor);
         }
     }
 }

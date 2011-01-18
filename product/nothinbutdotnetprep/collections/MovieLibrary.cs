@@ -30,37 +30,6 @@ namespace nothinbutdotnetprep.collections
             return movies.Contains(movie);
         }
 
-        public IEnumerable<Movie> all_movies_published_by_pixar()
-        {
-            return all_movies_matching(x => x.production_studio == ProductionStudio.Pixar);
-        }
-
-        IEnumerable<Movie> all_movies_matching(Predicate<Movie> condition)
-        {
-            foreach (var movie in movies)
-            {
-                if (condition(movie))yield return movie;
-            }
-        }
-
-        public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
-        {
-            return
-                all_movies_matching(
-                    x => x.production_studio == ProductionStudio.Disney || x.production_studio == ProductionStudio.Pixar);
-        }
-
-        public IEnumerable<Movie> all_movies_not_published_by_pixar()
-        {
-            IList<Movie> ret = new List<Movie>();
-            foreach (var m in movies)
-            {
-                if (m.production_studio != ProductionStudio.Pixar)
-                    ret.Add(m);
-            }
-            return ret;
-        }
-
         public IEnumerable<Movie> sort_all_movies_by_title_descending
         {
             get
@@ -86,38 +55,6 @@ namespace nothinbutdotnetprep.collections
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Movie> all_movies_published_after(int year)
-        {
-            return all_movies_matching(x => x.date_published.Year > year);
-        }
-
-        public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
-        {
-            return all_movies_matching(m => m.date_published.Year >= startingYear && m.date_published.Year <= endingYear);
-        }
-
-        public IEnumerable<Movie> all_kid_movies()
-        {
-            IList<Movie> ret = new List<Movie>();
-            foreach (var m in movies)
-            {
-                if (m.genre == Genre.kids)
-                    ret.Add(m);
-            }
-            return ret;
-        }
-
-        public IEnumerable<Movie> all_action_movies()
-        {
-            IList<Movie> ret = new List<Movie>();
-            foreach (var m in movies)
-            {
-                if (m.genre == Genre.action)
-                    ret.Add(m);
-            }
-            return ret;
-        }
-
         public IEnumerable<Movie> sort_all_movies_by_date_published_descending()
         {
             var comp = new MovieComparerDatePublishedDescending();
@@ -131,12 +68,5 @@ namespace nothinbutdotnetprep.collections
             ((List<Movie>) movies).Sort(comp);
             return movies;
         }
-
-        private IEnumerable<Movie> all_movies_produced_by(ProductionStudio studio)
-        {
-            return all_movies_matching(x => x.production_studio == studio);
-        }
-
-
     }
 }

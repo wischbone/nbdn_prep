@@ -1,19 +1,19 @@
 using System;
 
-namespace nothinbutdotnetprep.infrastructure
+namespace nothinbutdotnetprep.infrastructure.ranges
 {
-    public class IsBetween<T> : Criteria<T> where T : IComparable<T>
+    public class InclusiveRange<T> : Range<T> where T : IComparable<T>
     {
         T start;
         T end;
 
-        public IsBetween(T start, T end)
+        public InclusiveRange(T start, T end)
         {
             this.start = start;
             this.end = end;
         }
 
-        public bool matches(T item)
+        public bool contains(T item)
         {
             return item.CompareTo(start) >= 0 && item.CompareTo(end) <= 0;
         }
