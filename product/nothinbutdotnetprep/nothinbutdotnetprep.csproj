@@ -57,6 +57,7 @@
     <Compile Include="infrastructure\filtering\CriteriaFactory.cs" />
     <Compile Include="infrastructure\filtering\DefaultCriteriaFactory.cs" />
     <Compile Include="infrastructure\filtering\FuncExtensions.cs" />
+    <Compile Include="infrastructure\filtering\NotCriteriaFactory.cs" />
     <Compile Include="infrastructure\filtering\PropertyAccessor.cs" />
     <Compile Include="infrastructure\filtering\Where.cs" />
     <Compile Include="infrastructure\IsBetween.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="infrastructure\IsEqualToAny.cs" />
     <Compile Include="infrastructure\IsGreaterThan.cs" />
     <Compile Include="infrastructure\NotCriteria.cs" />
+    <Compile Include="infrastructure\NotEqualToAny.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />
     <Compile Include="infrastructure\PropertyCriteria.cs" />
   </ItemGroup>
