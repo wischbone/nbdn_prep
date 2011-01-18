@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.infrastructure.filtering
 {
     public class CriteriaFactory<ItemToFilter, PropertyType>
     {
-        Func<ItemToFilter, PropertyType> property_accessor;
+        PropertyAccessor<ItemToFilter, PropertyType> property_accessor;
 
-        public CriteriaFactory(Func<ItemToFilter, PropertyType> property_accessor)
+        public CriteriaFactory(PropertyAccessor<ItemToFilter, PropertyType> property_accessor)
         {
             this.property_accessor = property_accessor;
         }
@@ -19,7 +18,8 @@ namespace nothinbutdotnetprep.infrastructure.filtering
 
         public Criteria<ItemToFilter> equal_to_any(params PropertyType[] values)
         {
-            return new AnononymousCriteria<ItemToFilter>(x => new List<PropertyType>(values).Contains(property_accessor(x)));
+            return
+                new AnononymousCriteria<ItemToFilter>(x => new List<PropertyType>(values).Contains(property_accessor(x)));
         }
 
         public Criteria<ItemToFilter> not_equal_to(PropertyType value)

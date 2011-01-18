@@ -54,8 +54,10 @@
     <Compile Include="infrastructure\Criteria.cs" />
     <Compile Include="infrastructure\CriteriaExtensions.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
+    <Compile Include="infrastructure\filtering\ComparableCriteriaFactory.cs" />
     <Compile Include="infrastructure\filtering\CriteriaFactory.cs" />
     <Compile Include="infrastructure\filtering\FuncExtensions.cs" />
+    <Compile Include="infrastructure\filtering\PropertyAccessor.cs" />
     <Compile Include="infrastructure\filtering\Where.cs" />
     <Compile Include="infrastructure\NotCriteria.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />

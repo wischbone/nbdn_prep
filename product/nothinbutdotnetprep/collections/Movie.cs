@@ -1,5 +1,6 @@
 using System;
 using nothinbutdotnetprep.infrastructure;
+using nothinbutdotnetprep.infrastructure.filtering;
 
 namespace nothinbutdotnetprep.collections
 {
@@ -35,10 +36,13 @@ namespace nothinbutdotnetprep.collections
 
         public static Criteria<Movie> is_in_genre(Genre genre)
         {
-            return is_published_by(ProductionStudio.Pixar).or(
-                is_published_by(ProductionStudio.Disney));
+            return Where<Movie>.has_a(x => x.genre).equal_to(genre);
         }
 
+        public static Criteria<Movie> is_published_by_pixar_or_disney()
+        {
+            return is_published_by(ProductionStudio.Pixar).or(is_published_by(ProductionStudio.Disney));
+        }
         public static Criteria<Movie> is_published_by(ProductionStudio studio)
         {
             return new IsPublishedBy(studio);
