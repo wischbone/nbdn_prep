@@ -50,7 +50,6 @@
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\MovieComparers.cs" />
     <Compile Include="collections\ReadOnlySetOf.cs" />
-    <Compile Include="infrastructure\AnononymousCriteria.cs" />
     <Compile Include="infrastructure\Criteria.cs" />
     <Compile Include="infrastructure\CriteriaExtensions.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
@@ -60,8 +59,13 @@
     <Compile Include="infrastructure\filtering\FuncExtensions.cs" />
     <Compile Include="infrastructure\filtering\PropertyAccessor.cs" />
     <Compile Include="infrastructure\filtering\Where.cs" />
+    <Compile Include="infrastructure\IsBetween.cs" />
+    <Compile Include="infrastructure\IsEqualTo.cs" />
+    <Compile Include="infrastructure\IsEqualToAny.cs" />
+    <Compile Include="infrastructure\IsGreaterThan.cs" />
     <Compile Include="infrastructure\NotCriteria.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />
+    <Compile Include="infrastructure\PropertyCriteria.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

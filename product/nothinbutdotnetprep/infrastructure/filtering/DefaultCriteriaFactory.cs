@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace nothinbutdotnetprep.infrastructure.filtering
+﻿namespace nothinbutdotnetprep.infrastructure.filtering
 {
     public class DefaultCriteriaFactory<ItemToFilter, PropertyType> : CriteriaFactory<ItemToFilter, PropertyType>
     {
@@ -19,7 +16,7 @@ namespace nothinbutdotnetprep.infrastructure.filtering
 
         public Criteria<ItemToFilter> equal_to_any(params PropertyType[] values)
         {
-            return CreateCriteria(x => new List<PropertyType>(values).Contains(property_accessor(x)));
+            return create_criteria(new IsEqualToAny<PropertyType>(values));
         }
 
         public Criteria<ItemToFilter> not_equal_to(PropertyType value)
@@ -27,10 +24,10 @@ namespace nothinbutdotnetprep.infrastructure.filtering
             return new NotCriteria<ItemToFilter>(equal_to(value));
         }
 
-        public Criteria<ItemToFilter> CreateCriteria(Predicate<ItemToFilter> expression)
+        public Criteria<ItemToFilter> create_criteria(Criteria<PropertyType> criteria)
         {
-            return
-                new AnononymousCriteria<ItemToFilter>(expression);
+            return new PropertyCriteria<ItemToFilter, PropertyType>(property_accessor,
+                                                                    criteria);
         }
     }
 }

@@ -2,14 +2,13 @@ using System;
 
 namespace nothinbutdotnetprep.infrastructure.filtering
 {
-    public class ComparableCriteriaFactory<ItemToFilter, PropertyType>  : CriteriaFactory<ItemToFilter,PropertyType>where PropertyType : IComparable<PropertyType>
+    public class ComparableCriteriaFactory<ItemToFilter, PropertyType> : CriteriaFactory<ItemToFilter, PropertyType>
+        where PropertyType : IComparable<PropertyType>
     {
-        PropertyAccessor<ItemToFilter, PropertyType> accessor;
         CriteriaFactory<ItemToFilter, PropertyType> original_factory;
 
-        public ComparableCriteriaFactory(PropertyAccessor<ItemToFilter, PropertyType> accessor, CriteriaFactory<ItemToFilter, PropertyType> original_factory)
+        public ComparableCriteriaFactory(CriteriaFactory<ItemToFilter, PropertyType> original_factory)
         {
-            this.accessor = accessor;
             this.original_factory = original_factory;
         }
 
@@ -30,18 +29,17 @@ namespace nothinbutdotnetprep.infrastructure.filtering
 
         public Criteria<ItemToFilter> greater_than(PropertyType value)
         {
-            return CreateCriteria(x => accessor(x).CompareTo(value) > 0);
+            return create_criteria(new IsGreaterThan<PropertyType>(value));
         }
 
         public Criteria<ItemToFilter> between(PropertyType start, PropertyType end)
         {
-            return CreateCriteria(x => accessor(x).CompareTo(start) >= 0 &&
-                accessor(x).CompareTo(end) <= 0);
+            return create_criteria(new IsBetween<PropertyType>(start, end));
         }
 
-        public Criteria<ItemToFilter> CreateCriteria(Predicate<ItemToFilter> expression)
+        public Criteria<ItemToFilter> create_criteria(Criteria<PropertyType> raw_criteria)
         {
-            return original_factory.CreateCriteria(expression);
+            return original_factory.create_criteria(raw_criteria);
         }
     }
 }
